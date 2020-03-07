@@ -10,6 +10,16 @@ const get = (email, password, callback) => {
     });
 };
 
+const getDetails = (email, callback) => {
+    let sql = `SELECT * FROM user WHERE email="${email}";`
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, result);
+    });
+};
+
 module.exports = {
-    get
+    get, getDetails
 };

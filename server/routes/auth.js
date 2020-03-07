@@ -1,12 +1,15 @@
 const express = require('express');
+const jwt = require('jsonwebtoken');
+
+const patient = require('../models/patient');
+const {jwtSecret} = require('../common/config');
+
 const router = express.Router();
-const user = require('../models/user');
 
 router.post('/login', (req, res, next) => {
     const {email, password} = req.body;
-    user.get(email, password, (err, result) => {
+    patient.get(email, password, (err, result) => {
         if (err) {
-            console.log(err);
             res.status(500);
             res.send({message: 'Error'});
             return; 
@@ -16,18 +19,16 @@ router.post('/login', (req, res, next) => {
             res.send({message: 'Email or Password is incorrect'});
             return;
         }
-        console.log(result);
+        const token = jwt.sign({user: email}, jwtSecret, {
+            expiresIn: 60*60 //expires in an hour
+        });
         res.status(200);
-        res.send({message: 'Login success'});
+        res.send({message: 'Login success', data: token});
         return;
     });
 });
 
 router.post('/signup', (req, res, next) => {
-    res.send({message: 'Home page'});
-});
-
-router.post('/logout', (req, res, next) => {
     res.send({message: 'Home page'});
 });
 
