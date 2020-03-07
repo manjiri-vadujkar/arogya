@@ -29,7 +29,17 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/signup', (req, res, next) => {
-    res.send({message: 'Home page'});
-});
+    const {name, email, password, age, gender, height, weight, hdiseases} = req.body;
+    patient.addPatient(name, email, password, age, gender, height, weight, hdiseases, (err) => {
+        if (err) {
+            res.status(500);
+            res.send({message: 'Error'});
+            return; 
+        }
+        res.status(200);
+        res.send({message: 'Successfully Signed up'});
+        return;
+    });
+  });
 
 module.exports = router;
