@@ -40,15 +40,20 @@ class About extends Component {
                       Praesent fermentum tincidunt varius. Proin sit amet tempus
                       magna. Fusce pellentesque vulputate urna.{" "}
                     </p>
-                    <NavLink to="/" className="new-btn-d br-2">
-                      Read More
-                    </NavLink>
+                    {this.props.fromHome ? (
+                      <NavLink to="/about" className="new-btn-d br-2">
+                        Read More
+                      </NavLink>
+                    ) : null}
                   </div>
                   <div className="col-lg-6 col-md-6 col-sm-12">
                     <div className="about-m" id="banner">
                       <img src={About1} alt="about-us-1"></img>
                     </div>
                   </div>
+                  {!this.props.fromHome && (
+                    <div>Content to be shown only for /about page</div>
+                  )}
                 </div>
               </div>
             </div>
