@@ -69,7 +69,7 @@ class Login extends Component {
                 Sign in
               </button>
               <p className="forgot" align="center">
-                <NavLink to="/signup">Not registered>? Sign up now</NavLink>
+                <NavLink to="/signup">Not registered? Sign up now</NavLink>
               </p>
             </form>
           </div>
