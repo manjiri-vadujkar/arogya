@@ -44,6 +44,10 @@ class Signup extends Component {
       .then(res => {
         console.log("Successfully signed up");
         this.props.history.push('/login')
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Signup failed! Please try again after some time');
       });
   }
   render() {

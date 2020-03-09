@@ -1,40 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
+import { deleteJwt } from "../helpers/jwt";
 import Logo from "../common/images/logo.png";
 
 class Header extends Component {
-  menuItems = [
-    {
-      title: "Home",
-      to: "/home"
-    },
-    {
-      title: "About Us",
-      to: "/about"
-    },
-    {
-      title: "Gallery",
-      to: "/gallery"
-    },
-    {
-      title: "Contact",
-      to: "/contact"
-    },
-    {
-      title: "Home Remedies",
-      to: "/hr"
-    },
-    {
-      title: "Profile",
-      to: "/profile"
-    },
-    {
-      title: "Login",
-      to: "/login"
-    },
-  ];
-
   socialItems = [
     {
       icon: "fa-facebook",
@@ -55,23 +25,79 @@ class Header extends Component {
   ];
 
   buildMenu() {
+    const menuItems = [
+      {
+        title: "Home",
+        to: "/home",
+        show: true
+      },
+      {
+        title: "About Us",
+        to: "/about",
+        show: true
+      },
+      {
+        title: "Gallery",
+        to: "/gallery",
+        show: true
+      },
+      {
+        title: "Contact",
+        to: "/contact",
+        show: true
+      },
+      {
+        title: "Home Remedies",
+        to: "/hr",
+        show: true
+      },
+      {
+        title: "Profile",
+        to: "/profile",
+        show: true
+      },
+      {
+        title: "Login",
+        to: "/login",
+        show: !this.props.isLoggedIn
+      },
+      {
+        title: "Logout",
+        to: this.props.updateLoggedInState,
+        show: this.props.isLoggedIn
+      }
+    ];
     return (
       <ul className="navbar-nav">
-        {this.menuItems.map((item, index) => {
-          return (
+        {menuItems.map((item, index) => {
+          return item.show ? (
             <li key={index}>
-              <NavLink
-                className="nav-link"
-                activeClassName="active"
-                to={item.to}
-              >
-                {item.title}
-              </NavLink>
+              {typeof item.to === "string" ? (
+                <NavLink
+                  className="nav-link"
+                  activeClassName="active"
+                  to={item.to}
+                >
+                  {item.title}
+                </NavLink>
+              ) : (
+                <a className="nav-link" href="/" onClick={(event) => this.onLogout(event, item.to)}>
+                  {item.title}
+                </a>
+              )}
             </li>
-          );
+          ) : null;
         })}
       </ul>
     );
+  }
+
+  onLogout(event, to) {
+    // on logout, delete jwt, update state (i.e. toggle login/logout button and redirect to homepage)
+    event.preventDefault();
+    deleteJwt();
+    to();
+    this.props.history.push('/');
   }
 
   buildSocialMenu() {

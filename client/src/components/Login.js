@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 import axios from "axios";
+import { setJwt } from "../helpers/jwt";
 import "../common/css/login.css";
 
 class Login extends Component {
@@ -31,8 +32,13 @@ class Login extends Component {
         password: this.state.password
       })
       .then(res => {
-        sessionStorage.setItem("secretkey", res.data.data);
-        this.props.history.push('/')
+        setJwt(res.data.data);
+        this.props.updateLoggedInState();
+        this.props.history.push('/');
+      })
+      .catch(err => {
+        console.error(err);
+        alert('Login failed! Please try again after some time');
       });
   }
   render() {

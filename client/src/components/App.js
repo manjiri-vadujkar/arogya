@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import getJwt from "../helpers/jwt";
+import { getJwt } from "../helpers/jwt";
 
 // All styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,6 +22,7 @@ import Profile from "./Profile";
 import Contact from "./Contact";
 import Hr from "./Hr";
 
+// this helps us protect passed components
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
   const jwt = getJwt();
   return (
@@ -34,20 +35,70 @@ const AuthenticatedRoute = ({ component: Component, ...rest }) => {
   );
 };
 
+// this helps us pass, custom props to route components.
+const RouteWrapper = ({
+  component: Component,
+  isLoggedIn,
+  updateLoggedInState,
+  ...rest
+}) => {
+  return (
+    <Route
+      {...rest}
+      render={props => (
+        <Component
+          {...props}
+          isLoggedIn={isLoggedIn}
+          updateLoggedInState={updateLoggedInState}
+        />
+      )}
+    ></Route>
+  );
+};
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLoggedIn: getJwt() ? true : false
+    };
+
+    this.updateLoggedInState = this.updateLoggedInState.bind(this);
+  }
+
+  updateLoggedInState() {
+    this.setState({
+      isLoggedIn: getJwt() ? true : false
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
-        <Header />
+        {/* pass isLoggedIn state to Header as prop so that we can toggle(show/hide) logout/login buttons.
+          pass updateLoggedInState method to Header so that we can call it when logout button is clicked */}
+        <Header isLoggedIn={this.state.isLoggedIn} updateLoggedInState={this.updateLoggedInState} />
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/home" />} />
-          <Route exact path="/home" component={Home}></Route>
-          <Route exact path="/login" component={Login}></Route>
-          <Route exact path="/signup" component={Signup}></Route>
-          <Route exact path="/gallery" component={Gallery}></Route>
-          <Route exact path="/about" component={About}></Route>
-          <Route exact path="/hr" component={Hr}></Route>
+          <RouteWrapper exact path="/home" component={Home}></RouteWrapper>
+          {/* pass updateLoggedInState method to Login so that we can call it when successful login happens */}
+          <RouteWrapper
+            exact
+            path="/login"
+            component={Login}
+            updateLoggedInState={this.updateLoggedInState}
+          ></RouteWrapper>
+          <RouteWrapper exact path="/signup" component={Signup}></RouteWrapper>
+          <RouteWrapper
+            exact
+            path="/gallery"
+            component={Gallery}
+          ></RouteWrapper>
+          <RouteWrapper exact path="/about" component={About}></RouteWrapper>
+          <RouteWrapper exact path="/hr" component={Hr}></RouteWrapper>
           <AuthenticatedRoute
+            exact
             path="/profile"
             component={Profile}
           ></AuthenticatedRoute>

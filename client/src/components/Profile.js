@@ -20,7 +20,8 @@ class Profile extends Component {
         })
       )
       .catch(err => {
-        console.log(err);
+        console.error(err);
+        alert('Some error loading details. Try logging in again.');
         sessionStorage.removeItem("secretkey");
         this.props.history.push("/login");
       });
