@@ -63,8 +63,8 @@ class Home extends Component {
                   </div>
                   <div className="media-body dit-right">
                     <h4>Email</h4>
-                    <a href="#">demoinfo@gmail.com</a><br/>
-                    <a href="#">demoinfo@gmail.com</a>
+                    <a href="mailto:demoinfo@gmail.com">demoinfo@gmail.com</a><br/>
+                    <a href="mailto:demoinfo@gmail.com">demoinfo@gmail.com</a>
                   </div>
                 </div>
                 <div className="media cont-line">
@@ -73,8 +73,8 @@ class Home extends Component {
                   </div>
                   <div className="media-body dit-right">
                     <h4>Phone Number</h4>
-                    <a href="#">12345 67890</a><br/>
-                    <a href="#">12345 67890</a>
+                    <a href="tel:1234567890">12345 67890</a><br/>
+                    <a href="tel:1234567890">12345 67890</a>
                   </div>
                 </div>
               </div>

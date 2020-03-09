@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-import AuthenticatedComponent from "./AuthenticatedComponent";
+import getJwt from "../helpers/jwt";
+
 // All styles
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../common/css/font-awesome.min.css";
@@ -21,6 +22,18 @@ import Profile from "./Profile";
 import Contact from "./Contact";
 import Hr from "./Hr";
 
+const AuthenticatedRoute = ({ component: Component, ...rest }) => {
+  const jwt = getJwt();
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        jwt ? <Component {...props} jwt={jwt} /> : <Redirect to="/login" />
+      }
+    />
+  );
+};
+
 class App extends Component {
   render() {
     return (
@@ -34,9 +47,10 @@ class App extends Component {
           <Route exact path="/gallery" component={Gallery}></Route>
           <Route exact path="/about" component={About}></Route>
           <Route exact path="/hr" component={Hr}></Route>
-          {/* /* <AuthenticatedComponent>
-            <Route exact path="/profile" component={Profile}></Route>
-          </AuthenticatedComponent> */ }
+          <AuthenticatedRoute
+            path="/profile"
+            component={Profile}
+          ></AuthenticatedRoute>
           <Route exact path="/contact" component={Contact}></Route>
         </Switch>
         <Footer />
