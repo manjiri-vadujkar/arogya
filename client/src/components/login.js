@@ -32,6 +32,7 @@ class Login extends Component {
       })
       .then(res => {
         sessionStorage.setItem("secretkey", res.data.data);
+        this.props.history.push('/')
       });
   }
   render() {

@@ -8,7 +8,7 @@ class About extends Component {
     return (
       <div id="about" className="about-box">
         <div className="about-a1">
-          <div className="container">
+          <div className={!this.props.fromHome && "container"}>
             <div className="row">
               <div className="col-lg-12">
                 <div className="title-box">
