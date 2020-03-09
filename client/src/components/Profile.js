@@ -15,7 +15,7 @@ class Profile extends Component {
       headers: { 'x-access-token': this.props.jwt }
     })
       .then(res =>
-        res.setState({
+        this.setState({
           user: res.data.data
         })
       )
