@@ -66,3 +66,22 @@
 .map{
 	padding: 0 20px;
 }
+
+/*------------------------------------------------------------------
+    Home remedies
+-------------------------------------------------------------------*/
+
+.diseases h3{
+	font-size: 22px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.diseases h4{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.diseases p{
+	font-size: 18px;
+}

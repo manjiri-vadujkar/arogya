@@ -18,17 +18,21 @@ class Header extends Component {
       to: "/gallery"
     },
     {
-      title: "Login",
-      to: "/login"
+      title: "Contact",
+      to: "/contact"
+    },
+    {
+      title: "Home Remedies",
+      to: "/hr"
     },
     {
       title: "Profile",
       to: "/profile"
     },
     {
-      title: "Contact",
-      to: "/contact"
-    }
+      title: "Login",
+      to: "/login"
+    },
   ];
 
   socialItems = [
@@ -94,9 +98,6 @@ class Header extends Component {
             <div className="row">
               <div className="col-lg-6">
                 <div className="left-top">
-                  <NavLink className="new-btn-d br-2" to="/">
-                    <span>Book Appointment</span>
-                  </NavLink>
                   <a className="new-btn-d br-2" href="mailto:demo@gmail.com">
                     <span>demo@gmail.com</span>
                   </a>

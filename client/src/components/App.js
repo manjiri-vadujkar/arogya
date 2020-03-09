@@ -19,6 +19,7 @@ import About from "./About";
 import Gallery from "./Gallery";
 import Profile from "./Profile";
 import Contact from "./Contact";
+import Hr from "./Hr";
 
 class App extends Component {
   render() {
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path="/signup" component={Signup}></Route>
           <Route exact path="/gallery" component={Gallery}></Route>
           <Route exact path="/about" component={About}></Route>
+          <Route exact path="/hr" component={Hr}></Route>
           {/* /* <AuthenticatedComponent>
             <Route exact path="/profile" component={Profile}></Route>
           </AuthenticatedComponent> */ }
