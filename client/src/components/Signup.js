@@ -118,7 +118,7 @@ class Signup extends Component {
               <div className="form-group">
                 <label>Gender</label>
                 <select name="gender" value={this.state.value} onChange={e => this.click(e)}>
-                  <option value="female" onSel>Female</option>
+                  <option value="female">Female</option>
                   <option value="male">Male</option>
                   <option value="other">Other</option>
                 </select>
