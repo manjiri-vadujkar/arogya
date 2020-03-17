@@ -28,7 +28,14 @@ class Signup extends Component {
     });
   }
 
+  click(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
   submit(e) {
+    alert(this.state.gender)
     e.preventDefault();
     axios
       .post("/auth/signup", {
@@ -68,6 +75,7 @@ class Signup extends Component {
                   name="name"
                   onChange={e => this.change(e)}
                   value={this.state.name}
+                  required
                 ></input>
               </div>
 
@@ -79,6 +87,7 @@ class Signup extends Component {
                   name="email"
                   onChange={e => this.change(e)}
                   value={this.state.email}
+                  required
                 ></input>
               </div>
 
@@ -90,6 +99,7 @@ class Signup extends Component {
                   name="password"
                   onChange={e => this.change(e)}
                   value={this.state.password}
+                  required
                 ></input>
               </div>
 
@@ -101,18 +111,17 @@ class Signup extends Component {
                   name="age"
                   onChange={e => this.change(e)}
                   value={this.state.age}
+                  required
                 ></input>
               </div>
 
               <div className="form-group">
                 <label>Gender</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="gender"
-                  onChange={e => this.change(e)}
-                  value={this.state.gender}
-                ></input>
+                <select name="gender" value={this.state.value} onChange={e => this.click(e)}>
+                  <option value="female" onSel>Female</option>
+                  <option value="male">Male</option>
+                  <option value="other">Other</option>
+                </select>
               </div>
 
               <div className="form-group">
@@ -123,6 +132,7 @@ class Signup extends Component {
                   name="height"
                   onChange={e => this.change(e)}
                   value={this.state.height}
+                  required
                 ></input>
               </div>
 
@@ -134,6 +144,7 @@ class Signup extends Component {
                   name="weight"
                   onChange={e => this.change(e)}
                   value={this.state.weight}
+                  required
                 ></input>
               </div>
 
@@ -145,6 +156,7 @@ class Signup extends Component {
                   name="hdiseases"
                   onChange={e => this.change(e)}
                   value={this.state.hdiseases}
+                  required
                 ></input>
               </div>
 

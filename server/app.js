@@ -9,6 +9,7 @@ const {jwtSecret} = require('./common/config');
 
 const authRouter = require('./routes/auth');
 const patientRouter = require('./routes/patient');
+const doctorRouter = require('./routes/doctor');
 
 connection.connect();
 
@@ -35,6 +36,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/auth', authRouter);
+app.use('/doctor', doctorRouter);
 
 app.use((req, res, next) => {
   // we dont need to do anything for preflight request
