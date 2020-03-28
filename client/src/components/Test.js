@@ -33,8 +33,8 @@ class Test extends Component {
   submit(e) {
     e.preventDefault();
     axios
-      .post("/patient/test", {
-        headers: { 'x-access-token': this.props.jwt },
+      .post("/patient/test", 
+      {
         q1: this.state.q1,
         q2: this.state.q2,
         q3: this.state.q3,
@@ -45,6 +45,11 @@ class Test extends Component {
         q8: this.state.q8,
         q9: this.state.q9,
         q10: this.state.q10
+      },
+      {   
+        headers: { 
+          'x-access-token': this.props.jwt 
+        }
       })
       .then(res => {
         console.log("Successfully Submitted");
