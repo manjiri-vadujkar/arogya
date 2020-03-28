@@ -21,4 +21,17 @@ router.get('/details', function(req, res, next) {
   })
 });
 
+router.post('/test', (req, res, next) => {
+  patient.addTestResult(req.body, req.decodedToken.user, (err) => {
+    if (err) {
+        res.status(500);
+        res.send({message: 'Error'});
+        return; 
+    }
+    res.status(200);
+    res.send({message: 'Test Result Successfully Submitted'});
+    return;
+});
+});
+
 module.exports = router;

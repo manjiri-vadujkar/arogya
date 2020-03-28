@@ -28,14 +28,7 @@ class Signup extends Component {
     });
   }
 
-  click(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
   submit(e) {
-    alert(this.state.gender)
     e.preventDefault();
     axios
       .post("/auth/signup", {
@@ -116,16 +109,17 @@ class Signup extends Component {
               </div>
 
               <div className="form-group">
-                <label>Gender</label>
-                <select name="gender" value={this.state.value} onChange={e => this.click(e)}>
-                  <option value="female">Female</option>
-                  <option value="male">Male</option>
-                  <option value="other">Other</option>
-                </select>
+                <label>Gender</label><br/>
+                  <select name="gender" value={this.state.value} onChange={e => this.change(e)} required>
+                    <option value="">Select Your Gender</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
+                  </select>   
               </div>
 
               <div className="form-group">
-                <label>Height</label>
+                <label>Height (in cms)</label>
                 <input
                   type="text"
                   className="form-control"
@@ -137,7 +131,7 @@ class Signup extends Component {
               </div>
 
               <div className="form-group">
-                <label>Weight</label>
+                <label>Weight (in kgs)</label>
                 <input
                   type="text"
                   className="form-control"
@@ -149,15 +143,13 @@ class Signup extends Component {
               </div>
 
               <div className="form-group">
-                <label>Hereditary Diseases</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="hdiseases"
-                  onChange={e => this.change(e)}
-                  value={this.state.hdiseases}
-                  required
-                ></input>
+                <label>Hereditary Diseases</label><br/>
+                  <select name="hdiseases" value={this.state.value} onChange={e => this.change(e)} required>
+                    <option value="">Select the disease</option>
+                    <option value="Blood Pressure">Blood Pressure</option>
+                    <option value="Diabetes">Diabetes</option>
+                    <option value="Obesity">Obesity</option>
+                  </select>
               </div>
 
               <button type="submit" className="btn btn-primary signup">

@@ -21,6 +21,8 @@ import Gallery from "./Gallery";
 import Profile from "./Profile";
 import Contact from "./Contact";
 import Hr from "./Hr";
+import Appointments from "./Appointments";
+import Test from "./Test"
 
 // this helps us protect passed components
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
@@ -81,27 +83,47 @@ class App extends Component {
         <Header isLoggedIn={this.state.isLoggedIn} updateLoggedInState={this.updateLoggedInState} />
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/home" />} />
+          
           <RouteWrapper exact path="/home" component={Home}></RouteWrapper>
           {/* pass updateLoggedInState method to Login so that we can call it when successful login happens */}
+          
           <RouteWrapper
             exact
             path="/login"
             component={Login}
             updateLoggedInState={this.updateLoggedInState}
           ></RouteWrapper>
+          
           <RouteWrapper exact path="/signup" component={Signup}></RouteWrapper>
+          
           <RouteWrapper
             exact
             path="/gallery"
             component={Gallery}
           ></RouteWrapper>
+          
           <RouteWrapper exact path="/about" component={About}></RouteWrapper>
+          
           <RouteWrapper exact path="/hr" component={Hr}></RouteWrapper>
+          
           <AuthenticatedRoute
             exact
             path="/profile"
             component={Profile}
           ></AuthenticatedRoute>
+          
+          <AuthenticatedRoute
+           exact
+           path="/appointments"
+           component={Appointments}
+           ></AuthenticatedRoute>
+           
+           <AuthenticatedRoute
+           exact
+           path="/test"
+           component={Test}
+           ></AuthenticatedRoute>
+
           <Route exact path="/contact" component={Contact}></Route>
         </Switch>
         <Footer />

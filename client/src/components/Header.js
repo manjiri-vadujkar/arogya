@@ -97,7 +97,7 @@ class Header extends Component {
     event.preventDefault();
     deleteJwt();
     to();
-    this.props.history.push('/');
+    this.props.history.push('/home');
   }
 
   buildSocialMenu() {
