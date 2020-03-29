@@ -73,7 +73,7 @@ class Test extends Component {
               <h1><a href="/profile">Details</a></h1>
               <h1><a href="/test">Test</a></h1>
               <h1><a href="/appointments">Appointments</a></h1>
-              <h1><a href="">Guidelines</a></h1>
+              <h1><a href="/guidelines">Guidelines</a></h1>
             </div>
 
             <div className="col rhalf">

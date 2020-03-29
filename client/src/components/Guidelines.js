@@ -13,7 +13,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    Axios.get("/patient/details", {
+    Axios.get("/patient/guidelines", {
       headers: { 'x-access-token': this.props.jwt }
     })
       .then(res =>
@@ -23,9 +23,9 @@ class Profile extends Component {
       )
       .catch(err => {
         console.error(err);
-        alert('Some error loading details. Try logging in again.');
+        alert("Your result wasn't found. Take the test again");
         sessionStorage.removeItem("secretkey");
-        this.props.history.push("/login");
+        this.props.history.push("/test");
       });
   }
 
@@ -33,7 +33,10 @@ class Profile extends Component {
     return (
       <div className="container-fluid">
         <div className="title-box">
-          <h2>Profile</h2>
+          <h2>Guidelines</h2>
+          <p>
+              What to follow according to your Prakriti
+          </p>
         </div>
         <div className="container-fluid profile-box">
           <div className="row">
@@ -48,28 +51,19 @@ class Profile extends Component {
             <table className="detailsTable">
                 <tbody>
                   <tr>
-                  <td>Name</td><td>{this.state.user.name}</td>
-                  </tr>
-                  <tr>
-                  <td>Email</td><td>{this.state.user.email}</td>
-                  </tr>
-                  <tr>
-                  <td>Age</td><td>{this.state.user.age}</td>
-                  </tr>
-                  <tr>
-                  <td>Gender</td><td>{this.state.user.gender}</td>
-                  </tr>
-                  <tr>
-                  <td>Height</td><td>{this.state.user.height}</td>
-                  </tr>
-                  <tr>
-                  <td>Weight</td><td>{this.state.user.weight}</td>
-                  </tr>
-                  <tr>
-                  <td>Hereditary Diseases</td><td>{this.state.user.hdiseases}</td>
-                  </tr>
-                  <tr>
                   <td>Result</td><td>{this.state.user.result}</td>
+                  </tr>
+                  <tr>
+                  <td>Diet</td><td>{this.state.user.diet}</td>
+                  </tr>
+                  <tr>
+                  <td>Exercise</td><td>{this.state.user.exercise}</td>
+                  </tr>
+                  <tr>
+                  <td>Daily Activities</td><td>{this.state.user.dailyact}</td>
+                  </tr>
+                  <tr>
+                  <td>Avoid</td><td>{this.state.user.avoid}</td>
                   </tr>
                 </tbody>
               </table>

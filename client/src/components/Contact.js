@@ -8,7 +8,7 @@ class Contact extends Component {
         <div className="title-box">
           <h2>Contact Us</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Get in touch now and start your journey to become your healtiest self
           </p>
         </div>
         <div className="row">

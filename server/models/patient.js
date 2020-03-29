@@ -20,9 +20,30 @@ const getDetails = (email, callback) => {
     });
 };
 
+const getGuidelines = (email, callback) => {
+    let sql = ` SELECT * FROM guidelines WHERE result IN (SELECT result FROM user WHERE email="${email}");`
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, result);
+    });
+};
+
 const addPatient = (name, email, password, age, gender, height, weight, hdiseases, callback) => {
     let sql =`INSERT INTO user (name, email, password, age, gender, height, weight, hdiseases)
     VALUES ('${name}', '${email}', '${password}', '${age}', '${gender}','${height}','${weight}','${hdiseases}');`
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, JSON.stringify(result));
+    });
+}
+
+const addAppointment = (name, dname, descrip, date, time, user, callback) => {
+    let sql = `INSERT INTO appointments (name, email, dname, descrip, date, time) 
+    VALUES ('${name}', '${user}', '${dname}', '${descrip}', '${date}', '${time}');`
     connection.query(sql, (err, result) => {
         if (err) {
             return callback(err, null);
@@ -73,11 +94,7 @@ const addTestResult = (ans, email, callback) => {
     else {
         res="Vatta-Pitta-Kaffa"
     }
-
-    console.log(res);
-
     let sql = `UPDATE user SET result = "${res}" WHERE email="${email}";`
-    console.log(sql)
     connection.query(sql, (err, result) => {
         if (err) {
             return callback(err, null);
@@ -87,5 +104,5 @@ const addTestResult = (ans, email, callback) => {
 }
 
 module.exports = {
-    get, getDetails, addPatient, addTestResult
+    get, getDetails, addPatient, addTestResult, addAppointment, getGuidelines
 };

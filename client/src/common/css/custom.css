@@ -121,3 +121,19 @@ table.detailsTable {
 	color: #00cb86;
 	font-weight: bold;
   }
+
+/*------------------------------------------------------------------
+    Appointments
+-------------------------------------------------------------------*/
+label {
+	font-weight: bold;
+	font-size: 24;
+}
+
+.apps-control{
+	width: 400px; 
+}
+
+.apps{
+	padding-left: 250px;
+}

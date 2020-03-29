@@ -22,7 +22,8 @@ import Profile from "./Profile";
 import Contact from "./Contact";
 import Hr from "./Hr";
 import Appointments from "./Appointments";
-import Test from "./Test"
+import Test from "./Test";
+import Guidelines from "./Guidelines";
 
 // this helps us protect passed components
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
@@ -122,6 +123,12 @@ class App extends Component {
            exact
            path="/test"
            component={Test}
+           ></AuthenticatedRoute>
+
+          <AuthenticatedRoute
+           exact
+           path="/guidelines"
+           component={Guidelines}
            ></AuthenticatedRoute>
 
           <Route exact path="/contact" component={Contact}></Route>
