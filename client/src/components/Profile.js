@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import Axios from "axios";
 import { NavLink } from "react-router-dom";
 
+import {deleteDoctorState} from "../helpers/doctor"
+import {deleteJwt} from "../helpers/jwt"
+
 import "../common/css/custom.css"
 
 class Profile extends Component {
@@ -25,7 +28,8 @@ class Profile extends Component {
       .catch(err => {
         console.error(err);
         alert('Some error loading details. Try logging in again.');
-        sessionStorage.removeItem("secretkey");
+        deleteJwt();
+        deleteDoctorState();
         this.props.history.push("/patient/login");
       });
   }

@@ -43,7 +43,7 @@ class Signup extends Component {
       })
       .then(res => {
         console.log("Successfully signed up");
-        this.props.history.push('/login')
+        this.props.history.push('/patient/login')
       })
       .catch(err => {
         console.error(err);

@@ -11,7 +11,7 @@ const getDL = (email, password, callback) => {
 };
 
 const getPatients = (email, callback) => {
-    let sql = `SELECT name, age, gender, hdiseases, result FROM user;`
+    let sql = `SELECT id, name, age, gender, hdiseases, result FROM user;`
     connection.query(sql, (err, result) => {
         if (err) {
             return callback(err, null);

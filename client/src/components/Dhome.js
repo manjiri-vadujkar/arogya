@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 import Axios from "axios";
 
+import {deleteDoctorState} from "../helpers/doctor"
+
 import "../common/css/custom.css"
+import "../common/css/doctor.css"
+import { deleteJwt } from "../helpers/jwt";
 
 class Dhome extends Component{
     constructor(props) {
         super(props);
     
         this.state = {
-          user: []
+          patients: []
         };
       }
     
@@ -18,24 +22,25 @@ class Dhome extends Component{
         })
         .then(res =>
             this.setState({
-              user: res.data.data
+              patients: res.data.data
             })
         )
         .catch(err => {
             console.error(err);
             alert('Some error loading details. Try logging in again.');
-            sessionStorage.removeItem("secretkey");
+            deleteJwt();
+            deleteDoctorState();
             this.props.history.push("/doctor/login");
         });
     }
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <div className="title-box">
                 <h2>Patients List</h2>
                 </div>
-                <table class="patientsTable">
+                <table className="patientsTable">
                     <thead>
                         <tr>
                             <th>Id</th>
@@ -47,12 +52,16 @@ class Dhome extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>cell1_1</td><td>cell2_1</td><td>cell3_1</td><td>cell4_1</td><td>cell5_1</td><td>cell6_1</td>
-                        </tr>
-                        <tr>
-                            <td>cell1_2</td><td>cell2_2</td><td>cell3_2</td><td>cell4_2</td><td>cell5_2</td><td>cell6_2</td>
-                        </tr>
+                        {this.state.patients.map((p, i) => {
+                                return (<tr key={i}>
+                                    <td>{p.id}</td>
+                                    <td>{p.name}</td>
+                                    <td>{p.age}</td>
+                                    <td>{p.gender}</td>
+                                    <td>{p.hdiseases}</td>
+                                    <td>{p.result ? p.result : "N/A"}</td>
+                                </tr>)
+                            })}
                     </tbody>
                 </table>
             </div>
