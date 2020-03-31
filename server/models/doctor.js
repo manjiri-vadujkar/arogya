@@ -1,7 +1,7 @@
 const connection = require('../db/connect');
 
-const getDL = (username, password, callback) => {
-    let sql = `SELECT username,password FROM doctor_login WHERE username="${username}" AND password="${password}"`
+const getDL = (email, password, callback) => {
+    let sql = `SELECT email,password FROM doctor_login WHERE email="${email}" AND password="${password}"`
     connection.query(sql, (err, result) => {
         if (err) {
             return callback(err, null);
@@ -10,6 +10,26 @@ const getDL = (username, password, callback) => {
     });
 };
 
+const getPatients = (email, callback) => {
+    let sql = `SELECT name, age, gender, hdiseases, result FROM user;`
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, result);
+    });
+}
+
+const getAppointments = (email, callback) => {
+    let sql = `SELECT * FROM appointments;`
+    connection.query(sql, (err, result) => {
+        if (err) {
+            return callback(err, null);
+        }
+        return callback(null, result);
+    });
+}
+
 module.exports = {
-    getDL
+    getDL, getPatients, getAppointments
 };

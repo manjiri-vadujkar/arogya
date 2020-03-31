@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 import "../common/css/custom.css"
 
@@ -53,7 +54,7 @@ class Test extends Component {
       })
       .then(res => {
         console.log("Successfully Submitted");
-        this.props.history.push('/profile')
+        this.props.history.push('/patient/profile')
       })
       .catch(err => {
         console.error(err);
@@ -70,10 +71,10 @@ class Test extends Component {
         <div className="container-fluid profile-box">
           <div className="row">
             <div className="col-lg-3 lhalf">
-              <h1><a href="/profile">Details</a></h1>
-              <h1><a href="/test">Test</a></h1>
-              <h1><a href="/appointments">Appointments</a></h1>
-              <h1><a href="/guidelines">Guidelines</a></h1>
+              <h1><NavLink to="/patient/profile">Details</NavLink></h1>
+              <h1><NavLink to="/patient/test">Test</NavLink></h1>
+              <h1><NavLink to="/patient/appointments">Appointments</NavLink></h1>
+              <h1><NavLink to="/patient/guidelines">Guidelines</NavLink></h1>
             </div>
 
             <div className="col rhalf">

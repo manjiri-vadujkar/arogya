@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
 
 import axios from "axios";
 import { setJwt } from "../helpers/jwt";
+import { setDoctorState } from "../helpers/doctor";
 import "../common/css/login.css";
 
-class Login extends Component {
+class Dlogin extends Component {
   constructor(props) {
     super(props);
 
@@ -27,14 +27,15 @@ class Login extends Component {
   submit(e) {
     e.preventDefault();
     axios
-      .post("/auth/login", {
+      .post("/auth/dlogin", {
         email: this.state.email,
         password: this.state.password
       })
       .then(res => {
         setJwt(res.data.data);
+        setDoctorState(res.data.doctor);
         this.props.updateLoggedInState();
-        this.props.history.push('/');
+        this.props.history.push('/doctor/all-patients');
       })
       .catch(err => {
         console.error(err);
@@ -47,7 +48,7 @@ class Login extends Component {
         <div className="container">
           <div className="col-lg-12 main">
             <div className="title-box">
-              <h1 className="sign">Sign in</h1>
+              <h1 className="sign">Doctor Sign in</h1>
             </div>
             <form onSubmit={e => this.submit(e)}>
               <div className="form-group">
@@ -75,10 +76,6 @@ class Login extends Component {
               <button type="submit" className="btn btn-primary submit">
                 Sign in
               </button>
-              <p className="forgot" align="center">
-                <NavLink to="/signup">Not registered? Sign up now</NavLink><br/>
-                <NavLink to="/doctor/login">Doctor Login</NavLink>
-              </p>
             </form>
           </div>
         </div>
@@ -87,4 +84,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Dlogin;

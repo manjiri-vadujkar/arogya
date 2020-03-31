@@ -1,0 +1,44 @@
+table.patientsTable {
+    background-color: #FFFFFF;
+    width: 100%;
+    text-align: center;
+    border-collapse: collapse;
+  }
+  table.patientsTable td, table.patientsTable th {
+    border: 1px solid #AAAAAA;
+    padding: 10px 10px;
+  }
+  table.patientsTable tbody td {
+    font-size: 13px;
+  }
+  table.patientsTable tr:nth-child(even) {
+    background: #00F09E;
+  }
+  table.patientsTable thead {
+    background: #00CB86;
+    border-bottom: 5px solid #FFFFFF;
+  }
+  table.patientsTable thead th {
+    font-size: 15px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+    border-left: 2px solid #D0E4F5;
+  }
+  table.patientsTable thead th:first-child {
+    border-left: none;
+  }
+  
+  table.patientsTable tfoot td {
+    font-size: 14px;
+  }
+  table.patientsTable tfoot .links {
+    text-align: right;
+  }
+  table.patientsTable tfoot .links a{
+    display: inline-block;
+    background: #1C6EA4;
+    color: #FFFFFF;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }

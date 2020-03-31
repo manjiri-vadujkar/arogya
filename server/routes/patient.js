@@ -4,6 +4,15 @@ const patient = require('../models/patient')
 
 const router = express.Router();
 
+router.use((req, res, next) => {
+  if(req.decodedToken.doctor) {
+    res.status(403);
+    res.send({message: 'Access Forbidden'});
+    return;
+  }
+  next();
+});
+
 router.get('/details', function(req, res, next) {
   patient.getDetails(req.decodedToken.user, (err, result) => {
     if (err) {

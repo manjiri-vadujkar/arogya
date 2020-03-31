@@ -36,7 +36,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/auth', authRouter);
-app.use('/doctor', doctorRouter);
 
 app.use((req, res, next) => {
   // we dont need to do anything for preflight request
@@ -63,6 +62,7 @@ app.use((req, res, next) => {
   }
 })
 
+app.use('/doctor', doctorRouter);
 app.use('/patient', patientRouter);
 
 // catch 404 and forward to error handler

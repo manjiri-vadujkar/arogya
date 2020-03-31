@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 import { deleteJwt } from "../helpers/jwt";
 import Logo from "../common/images/logo.png";
+import { deleteDoctorState } from "../helpers/doctor";
 
 class Header extends Component {
   socialItems = [
@@ -49,16 +50,26 @@ class Header extends Component {
       {
         title: "Home Remedies",
         to: "/hr",
-        show: true
+        show: !this.props.isDoctor
       },
       {
         title: "Profile",
-        to: "/profile",
-        show: true
+        to: "/patient/profile",
+        show: this.props.isLoggedIn && !this.props.isDoctor
+      },
+      {
+        title: "Patients List",
+        to: "/doctor/all-patients",
+        show: this.props.isLoggedIn && this.props.isDoctor
+      },
+      {
+        title: "Appointments",
+        to: "/doctor/all-appointments",
+        show: this.props.isLoggedIn && this.props.isDoctor
       },
       {
         title: "Login",
-        to: "/login",
+        to: "/patient/login",
         show: !this.props.isLoggedIn
       },
       {
@@ -96,8 +107,9 @@ class Header extends Component {
     // on logout, delete jwt, update state (i.e. toggle login/logout button and redirect to homepage)
     event.preventDefault();
     deleteJwt();
+    deleteDoctorState();
     to();
-    this.props.history.push('/home');
+    this.props.history.push('/');
   }
 
   buildSocialMenu() {
@@ -171,4 +183,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default withRouter(Header);

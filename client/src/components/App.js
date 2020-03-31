@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import { getJwt } from "../helpers/jwt";
+import { getDoctorState } from "../helpers/doctor";
 
 // All styles
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -24,16 +25,37 @@ import Hr from "./Hr";
 import Appointments from "./Appointments";
 import Test from "./Test";
 import Guidelines from "./Guidelines";
+import Dhome from "./Dhome";
+import Dlogin from "./Dlogin";
 
 // this helps us protect passed components
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
   const jwt = getJwt();
+  const isDoctor = getDoctorState();
   return (
     <Route
       {...rest}
-      render={props =>
-        jwt ? <Component {...props} jwt={jwt} /> : <Redirect to="/login" />
+      render={props => {
+        if (jwt) {
+          console.log(rest)
+          switch(rest.userType) {
+            case "patient": 
+              if (!isDoctor) {
+                return <Component {...props} jwt={jwt} />
+              }
+              return <Redirect to="/home" />
+            case "doctor": 
+              if (isDoctor) {
+                return <Component {...props} jwt={jwt} />
+              }
+              return <Redirect to="/home" />
+            default: return <Redirect to="/home" />
+          }
+        } 
+        return <Redirect to="/patient/login" />
+      
       }
+    }
     />
   );
 };
@@ -64,7 +86,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      isLoggedIn: getJwt() ? true : false
+      isLoggedIn: getJwt() ? true : false,
+      isDoctor: getDoctorState() ? true : false
     };
 
     this.updateLoggedInState = this.updateLoggedInState.bind(this);
@@ -72,16 +95,19 @@ class App extends Component {
 
   updateLoggedInState() {
     this.setState({
-      isLoggedIn: getJwt() ? true : false
+      isLoggedIn: getJwt() ? true : false,
+      isDoctor: getDoctorState() ? true : false
     })
   }
+
 
   render() {
     return (
       <BrowserRouter>
         {/* pass isLoggedIn state to Header as prop so that we can toggle(show/hide) logout/login buttons.
           pass updateLoggedInState method to Header so that we can call it when logout button is clicked */}
-        <Header isLoggedIn={this.state.isLoggedIn} updateLoggedInState={this.updateLoggedInState} />
+        <Header isLoggedIn={this.state.isLoggedIn} updateLoggedInState={this.updateLoggedInState} 
+          isDoctor={this.state.isDoctor} />
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/home" />} />
           
@@ -90,7 +116,7 @@ class App extends Component {
           
           <RouteWrapper
             exact
-            path="/login"
+            path="/patient/login"
             component={Login}
             updateLoggedInState={this.updateLoggedInState}
           ></RouteWrapper>
@@ -109,29 +135,48 @@ class App extends Component {
           
           <AuthenticatedRoute
             exact
-            path="/profile"
+            path="/patient/profile"
+            userType="patient"
             component={Profile}
           ></AuthenticatedRoute>
           
           <AuthenticatedRoute
            exact
-           path="/appointments"
+           path="/patient/appointments"
+           userType="patient"
            component={Appointments}
            ></AuthenticatedRoute>
            
            <AuthenticatedRoute
            exact
-           path="/test"
+           path="/patient/test"
+           userType="patient"
            component={Test}
            ></AuthenticatedRoute>
 
           <AuthenticatedRoute
            exact
-           path="/guidelines"
+           path="/patient/guidelines"
+           userType="patient"
            component={Guidelines}
            ></AuthenticatedRoute>
 
           <Route exact path="/contact" component={Contact}></Route>
+
+          <RouteWrapper
+            exact
+            path="/doctor/login"
+            component={Dlogin}
+            updateLoggedInState={this.updateLoggedInState}
+          ></RouteWrapper>
+
+          <AuthenticatedRoute
+          exact
+          path="/doctor/all-patients"
+          userType="doctor"
+          component={Dhome}
+          ></AuthenticatedRoute>
+
         </Switch>
         <Footer />
       </BrowserRouter>
