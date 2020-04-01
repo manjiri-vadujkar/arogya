@@ -11,35 +11,27 @@ import Gallery8 from "../common/images/gallery8.jpg";
 class Gallery extends Component {
   imageData = [
     {
-      title: "Lorem ipsum dolor",
       image: Gallery1
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery2
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery3
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery4
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery5
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery6
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery7
     },
     {
-      title: "Lorem ipsum dolor",
       image: Gallery8
     }
   ];
@@ -56,7 +48,6 @@ class Gallery extends Component {
                 style={{ height: "220px" }}
               ></img>
               <div className="box-content">
-                <h3 className="title">{data.title}</h3>
               </div>
             </div>
           </div>
@@ -73,7 +64,6 @@ class Gallery extends Component {
             <div className="col-lg-12">
               <div className="title-box">
                 <h2>Gallery</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
               </div>
             </div>
           </div>

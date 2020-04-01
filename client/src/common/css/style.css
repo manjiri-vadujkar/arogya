@@ -636,7 +636,7 @@ button:focus{
     transition: all 0.5s ease 0s;
 }
 .box-gallery:hover .box-content{
-    background-color: rgba(255, 242, 242, 0.8);
+    background-color: fffff;
 }
 .box-gallery .box-content:before,
 .box-gallery .box-content:after{
