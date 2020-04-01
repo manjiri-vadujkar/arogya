@@ -27,6 +27,7 @@ import Test from "./Test";
 import Guidelines from "./Guidelines";
 import Dhome from "./Dhome";
 import Dlogin from "./Dlogin";
+import Dappointments from "./Dappointments";
 
 // this helps us protect passed components
 const AuthenticatedRoute = ({ component: Component, ...rest }) => {
@@ -175,6 +176,13 @@ class App extends Component {
           path="/doctor/all-patients"
           userType="doctor"
           component={Dhome}
+          ></AuthenticatedRoute>
+
+          <AuthenticatedRoute
+          exact
+          path="/doctor/all-appointments"
+          userType="doctor"
+          component={Dappointments}
           ></AuthenticatedRoute>
 
         </Switch>
