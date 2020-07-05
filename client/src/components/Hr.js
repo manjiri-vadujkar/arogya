@@ -7,7 +7,7 @@ class hr extends Component{
                 <div className="title-box">
                     <h2>Common Diseases</h2>
                     <p>
-                        Here is a list of common Diseases with thier home remedies
+                        Here is a list of common Diseases with their home remedies
                     </p>
                 </div>
                 <div className="diseases">
@@ -15,7 +15,7 @@ class hr extends Component{
                         <li>
                             <h3>Sore Throat</h3>
                             <h4>Home Remedies</h4>
-                            <ul>
+                            <ul className='hr-item'>
                                 <li>A mixture of Listerine mouth wash and Hydrogen Peroxide. Pour a little of each liquid into a cup
     (equal parts) and gargle.</li>
                                 <li>Eat three to four marshmallows to soothe a sore throat. The gelatin in the marshmallows is what
@@ -26,7 +26,7 @@ class hr extends Component{
                         <li>
                             <h3>Common Fever</h3>
                             <h4>Home Remedies</h4>
-                            <ul>
+                            <ul className='hr-item'>
                                 <li>Drink tea made with apinch of saffron.</li>
                                 <li>Eat oranges. Oranges give instant energy and helps the body fight unwanted infections</li>
                                 <li>A glass of milk with some turmeric also works wonders.</li>
@@ -35,7 +35,7 @@ class hr extends Component{
                         <li>
                             <h3>Fever Blisters</h3>
                             <h4>Home Remedies</h4>
-                            <ul>
+                            <ul className='hr-item'>
                                 <li>Apply petroleum jelly to the skin</li>
                                 <li>Apply cold compress on the affected area.</li>
                                 <li>Avoid eating nuts and chocolate.</li>
@@ -44,7 +44,7 @@ class hr extends Component{
                         <li>
                             <h3>Cough</h3>
                             <h4>Home Remedies</h4>
-                            <ul>
+                            <ul className='hr-item'>
                                 <li>Basil leaves and ginger are very effective in relieving an irritating dry cough. You can either chew
     basil leaves or take fresh ginger with hot water.</li>
                                 <li>Drinking a few cups of hot water with salt can also help stop coughing.</li>
@@ -54,7 +54,7 @@ class hr extends Component{
                         <li>
                             <h3>Common Cold</h3>
                             <h4>Home Remedies</h4>
-                            <ul>
+                            <ul className='hr-item'>
                                 <li>Garlic soup helps reduce the harshness of a cold.</li>
                                 <li>A glass of lemon juice a day would raise the body’s resistance.</li>
                                 <li>Onion juice can also help avoid a cold.</li>
@@ -63,7 +63,7 @@ class hr extends Component{
                         <li>
                             <h3>HeartBurn</h3>
                             <h4>Home Remedies</h4>
-                            <ul>
+                            <ul className='hr-item'>
                                 <li>Dissolve a tsp. of baking soda in 8 ounces (1 cup) of water and drink. Baking soda is a natural
                                 antacid.</li>
                                 <li>Bananas act as a natural antacid in the body. You can eat either fresh or dried bananas.</li>

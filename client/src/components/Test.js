@@ -53,7 +53,7 @@ class Test extends Component {
         }
       })
       .then(res => {
-        console.log("Successfully Submitted");
+        alert("Test result successfully submitted");
         this.props.history.push('/patient/profile')
       })
       .catch(err => {

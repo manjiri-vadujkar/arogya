@@ -12,6 +12,7 @@ import "../common/css/style.css";
 import "../common/css/responsive.css";
 import "../common/css/custom.css";
 
+//All Components
 import Header from "./Header";
 import Home from "./Home";
 import Login from "./Login";

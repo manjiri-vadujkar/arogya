@@ -41,7 +41,7 @@ class Appointments extends Component {
       }  
       )
       .then(res => {
-        console.log("Successfully Submitted");
+        alert("Appointment Successfully Booked");
         this.props.history.push('/patient/profile')
       })
       .catch(err => {
